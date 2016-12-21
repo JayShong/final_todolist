@@ -1,1 +1,15 @@
-list - index
+<% if @empty %>
+	<p> You do not have any To Do List.<br>Please create one.<br></p>
+	<form action="/list/create" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+		<label for="title">Title</label><br>
+		<input type="text" name="list[title]"><br>
+		<input type="submit" value="Create To Do List">
+	</form>
+<% end %>
+
+<% if @list %>
+<%= @list.title %><br>
+		<%= link_to "Update", list_path(@list.id) %>
+
+<% end %>

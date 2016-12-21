@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   get 'user/sign_in' => "user#sign_in"
   post 'user/logged_in' => "user#logged_in"
-
+  post 'list/create' => "list#create"
 
   resources :user
+  resources :list, only: [:index, :show]
 
 
   root "user#index"

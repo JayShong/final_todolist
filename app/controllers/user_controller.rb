@@ -14,7 +14,7 @@ class UserController < ApplicationController
 		if @user.save
 			flash[:success] = "Your account has been created."
 			session[:user_id] = @user.id
-			render "list/index"
+			redirect_to list_index_path
 		else
 			error_message = @user.errors.messages
 			flash[:alert] = "#{error_message[:email].join}"
@@ -32,7 +32,8 @@ class UserController < ApplicationController
 		@user = User.find_by(email: params[:user][:email]).try(:authenticate, params[:user][:password])
 		if @user
 			flash[:success] = "You have logged in."
-			render "list/index"
+			session[:user_id] = @user.id
+			redirect_to list_index_path
 		else
 			flash[:alert] = "Invalid email/password."
 			redirect_to user_sign_in_path
