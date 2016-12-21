@@ -1,0 +1,15 @@
+Please enter your credentials below to sign in.
+<br>
+<br>
+
+
+<form action="/user/logged_in" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+	<label for="email">Email</label><br>
+	<input type="text" name="user[email]">
+	<br>
+	<label for="password">Password</label><br>
+	<input type="password" name="user[password]">
+	<br>
+	<input type="submit" value="Sign In">
+</form>

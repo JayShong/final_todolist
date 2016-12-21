@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'user/sign_in' => "user#sign_in"
+  post 'user/logged_in' => "user#logged_in"
 
 
   resources :user
-  get 'user/sign_in' => "user#sign_in"
-  post 'user/logged_in' => "user#logged_in"
+
 
   root "user#index"
   # The priority is based upon order of creation: first created -> highest priority.
