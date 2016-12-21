@@ -10,13 +10,15 @@ class UserController < ApplicationController
 	end
 
 	def create
-		user = User.new(params[user])
+		user = User.new(user_params)
 		if user.save
-			flash[:notice] = "Your account has been created."
+			flash[:success] = "Your account has been created."
 			render "list/index"
 		else
-			flash[:alert] = "Your account cannot be created."
-			redirect_to user_sign_in_path
+			byebug
+			error_message = user.errors.messages
+			flash[:alert] = "#{error_message[:email].join}"
+			redirect_to new_user_path
 		end
 	end
 
@@ -26,5 +28,10 @@ class UserController < ApplicationController
 
 	def logged_in
 	end
+
+	private
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
 
 end
