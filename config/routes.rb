@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'task/complete' => "task#complete"
   post 'task/destroy' => "task#destroy"
   get 'profile' => "user#profile"
+  get "/auth/:provider/callback" => "user#create_from_omniauth"
 
   resources :user
   resources :list, only: [:index, :show, :update]

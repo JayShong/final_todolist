@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 # image upload
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
+# facebook API
+gem 'omniauth-facebook'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
