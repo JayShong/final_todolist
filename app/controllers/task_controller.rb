@@ -14,4 +14,15 @@ class TaskController < ApplicationController
 		end
 		redirect_to list_index_path
 	end
+
+	def destroy
+		@list = List.find(params[:list_id])
+		@tasks = @list.tasks
+		@tasks.each do |t|
+			if t.status == true 
+				t.destroy
+			end
+		end
+		redirect_to list_index_path
+	end
 end

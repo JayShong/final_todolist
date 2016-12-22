@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'list/destroy' => "list#destroy"
   post 'task/create' => "task#create"
   post 'task/complete' => "task#complete"
+  post 'task/destroy' => "task#destroy"
 
   resources :user
   resources :list, only: [:index, :show, :update]

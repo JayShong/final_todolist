@@ -9,25 +9,47 @@
 <% end %>
 
 <% if @list %>
-<%= @list.title %><br><br>
+<h3><%= @list.title %></h3>
 	<table>
 	<% @tasks.each do |t| %>
 		<tr>
 		<td><% if t.status == false %>
 			<%= "[ ]" %>
-			<% else %>
-			<%= "[X]" %>
-			<% end %></td>
+		</td>
 		<td><%= t.description %></td>
 		<td>
 		<form action="/task/complete" method="post" >
-		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
-		<input type="hidden" name="task_id" value="<%= t.id%>">
-		<input type="submit" value="Status update">
-	</form>
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+			<input type="hidden" name="task_id" value="<%= t.id%>">
+			<input type="submit" value="Status update">
+		</form>
 		</tr>
+		<% end %>
 	<% end %>
 	</table>
+	<br>
+	<br>
+	<table>
+		<% @tasks.each do |t| %>
+		<tr>
+			<td>
+			<% if t.status == true %>
+			<%= "[X]" %>
+			</td>
+			<td><%= t.description %></td>
+			<td>
+			<form action="/task/complete" method="post" >
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+				<input type="hidden" name="task_id" value="<%= t.id%>">
+				<input type="submit" value="Status update">
+			</form>
+			</tr>
+			<% end %>
+		<% end %>
+	</table>
+
+
+
 	<br><br><br>
 	<form action="/task/create" method="post" >
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
@@ -41,6 +63,12 @@
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 		<input type="hidden" name="list_id" value="<%= @list.id%>">
 		<input type="submit" value="Delete the list">
+	</form>
+		<br>
+	<form action="/task/destroy" method="post" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+		<input type="hidden" name="list_id" value="<%= @list.id%>">
+		<input type="submit" value="Clear completed tasks">
 	</form>
 
 <% end %>
