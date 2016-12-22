@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
 	validates_uniqueness_of :email, message: "This email has been registered. Please use another email."
 	
 	has_many :lists
+
+	mount_uploader :avatar, AvatarUploader
 end

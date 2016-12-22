@@ -40,6 +40,17 @@ class UserController < ApplicationController
 		end
 	end
 
+	def profile
+		@user = User.find(session[:user_id])
+	end
+
+	def update
+		byebug
+		@user = User.find(session[:user_id])
+		@user.update(avatar: params[:user][:avatar])
+		redirect_to profile_path
+	end
+
 	private
   def user_params
     params.require(:user).permit(:name, :email, :password)

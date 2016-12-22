@@ -1,0 +1,17 @@
+
+<% if @user.avatar.file.nil? %>
+	<%= image_tag("avatar_placeholder.png", size: '250x250') %>
+<% else %>
+    <%= image_tag(@user.avatar.url.to_s, alt: "#{@user.email}'s Avatar", size: '250x250') %><br>
+<% end %>
+<br>
+
+<%= form_for @user do |f| %>
+    <%= f.file_field :avatar %>
+    <%= f.submit "Upload" %>
+<% end %>
+
+<br>
+Name : <%= @user.name %><br>
+Email : <%= @user.email %><br>
+Access : <%= @user.role %><br>

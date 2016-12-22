@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'task/create' => "task#create"
   post 'task/complete' => "task#complete"
   post 'task/destroy' => "task#destroy"
+  get 'profile' => "user#profile"
 
   resources :user
   resources :list, only: [:index, :show, :update]
