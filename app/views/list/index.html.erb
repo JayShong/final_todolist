@@ -10,6 +10,11 @@
 
 <% if @list %>
 <%= @list.title %><br>
-		<%= link_to "Update", list_path(@list.id) %>
+		<%= link_to "Update the list", list_path(@list.id) %>
+	<form action="/list/destroy" method="post" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+	<input type="hidden" name="list_id" value="<%= @list.id%>">
+		<input type="submit" value="Delete the list">
+	</form>
 
 <% end %>

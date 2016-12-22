@@ -14,6 +14,11 @@ class ListController < ApplicationController
 		redirect_to list_index_path
 	end
 
+	def destroy
+		List.destroy(params[:list_id])
+		redirect_to list_index_path
+	end
+
 	private
 
  	def list_params
