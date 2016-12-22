@@ -1,6 +1,10 @@
 class ListController < ApplicationController
 
 	def index
+		if User.find(session[:user_id]).role == "Admin"
+			@admin = 1
+			@lists = List.all
+		end
 		if List.find_by(user_id: session[:user_id]).blank?
 			@empty = 1
 		else

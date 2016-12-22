@@ -1,15 +1,35 @@
-<% if @empty %>
+<% if @admin %>
+	<table>
+	<% @lists.each do |l| %>
+			<td>
+				<tr>
+					<%= l.title %>
+				</tr>
+					<% l.tasks.each do |t| %>
+						<tr>
+						<% if t.status == false %>
+							<%= "[ ]" + "#{t.description}" %>
+						<% else %>
+							<%= "[X]" + "#{t.description}" %>
+						<% end %>
+						</tr>
+					<% end %>
+			</td>
+	<% end %>
+	</table>
+<% else %>
+	<% if @empty %>
 	<p> You do not have any To Do List.<br>Please create one.<br></p>
-	<form action="/list/create" method="post">
-		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
-		<label for="title">Title</label><br>
-		<input type="text" name="list[title]"><br>
-		<input type="submit" value="Create To Do List">
-	</form>
-<% end %>
+		<form action="/list/create" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+			<label for="title">Title</label><br>
+			<input type="text" name="list[title]"><br>
+			<input type="submit" value="Create To Do List">
+		</form>
+	<% end %>
 
-<% if @list %>
-<h3><%= @list.title %></h3>
+	<% if @list %>
+	<h3><%= @list.title %></h3>
 	<table>
 	<% @tasks.each do |t| %>
 		<tr>
@@ -72,3 +92,7 @@
 	</form>
 
 <% end %>
+<% end %>
+
+
+
