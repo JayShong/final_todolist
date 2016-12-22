@@ -5,6 +5,7 @@ class ListController < ApplicationController
 			@empty = 1
 		else
 			@list = List.find_by(user_id: session[:user_id])
+			@tasks = @list.tasks
 		end
 	end
 

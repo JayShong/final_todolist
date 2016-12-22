@@ -9,7 +9,26 @@
 <% end %>
 
 <% if @list %>
-<%= @list.title %><br><br><br><br>
+<%= @list.title %><br><br>
+	<table>
+	<% @tasks.each do |t| %>
+		<tr>
+		<td><% if t.status == false %>
+			<%= "[ ]" %>
+			<% else %>
+			<%= "[X]" %>
+			<% end %></td>
+		<td><%= t.description %></td>
+		<td>
+		<form action="/task/complete" method="post" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+		<input type="hidden" name="task_id" value="<%= t.id%>">
+		<input type="submit" value="Status update">
+	</form>
+		</tr>
+	<% end %>
+	</table>
+	<br><br><br>
 	<form action="/task/create" method="post" >
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 		<input type="hidden" name="list_id" value="<%= @list.id%>">
@@ -17,9 +36,10 @@
 		<input type="text" name="description"><br>
 		<input type="submit" value="Add task to list">
 	</form>
+	<br>
 	<form action="/list/destroy" method="post" >
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
-	<input type="hidden" name="list_id" value="<%= @list.id%>">
+		<input type="hidden" name="list_id" value="<%= @list.id%>">
 		<input type="submit" value="Delete the list">
 	</form>
 
