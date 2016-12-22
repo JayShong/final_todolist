@@ -24,6 +24,14 @@ class ListController < ApplicationController
 		redirect_to list_index_path
 	end
 
+	def search
+	end
+
+	def search_result
+		@lists = List.find_by(title: params[:title])
+		render "list/search"
+	end
+
 	private
 
  	def list_params

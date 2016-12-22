@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'profile' => "user#profile"
   get "/auth/:provider/callback" => "user#create_from_omniauth"
   get 'user/logout' => "user#logout"
+  get 'list/search' => "list#search", as: 'search'
+  post 'list/search' => "list#search_result"
 
 
   resources :user

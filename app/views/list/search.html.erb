@@ -1,0 +1,24 @@
+<form action="/list/search" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+	<label for="title">Title</label><br>
+	<input type="text" name="title"><br>
+	<input type="submit" value="Search for To Do List">
+</form>
+
+<br><br>
+
+<% if @lists %>
+		<p> Search Results </p><br>
+		<h3><%= @lists.title %></h3>
+		<table>
+			<% @lists.tasks.each do |t| %>
+			<tr>
+				<td><% if t.status == false %>
+				<%= "[ ]" %>
+				</td>
+				<td><%= t.description %></td>
+				</tr>
+				<% end %>
+			<% end %>
+		</table>
+<% end %>
