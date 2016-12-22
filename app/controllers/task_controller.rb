@@ -23,6 +23,10 @@ class TaskController < ApplicationController
 				t.destroy
 			end
 		end
-		redirect_to list_index_path
+		respond_to do |format|
+			format.html { redirect_to list_index_path }
+			format.js { render "list/index"}
+		end
+
 	end
 end

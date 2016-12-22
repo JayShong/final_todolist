@@ -21,7 +21,6 @@ class ListController < ApplicationController
 
 	def destroy
 		List.destroy(params[:list_id])
-		redirect_to list_index_path
 	end
 
 	def search

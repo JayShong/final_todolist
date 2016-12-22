@@ -55,18 +55,18 @@
 	<table>
 		<% @tasks.each do |t| %>
 		<tr>
-			<td>
 			<% if t.status == true %>
-			<%= "[X]" %>
-			</td>
-			<td><%= t.description %></td>
 			<td>
-			<form action="/task/complete" method="post" >
+			<p class="completed"><%= "[X]"+ t.description %></p>
+			</td>
+			<td>
+			<form action="/task/complete" method="post" class="completed">
 				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 				<input type="hidden" name="task_id" value="<%= t.id%>">
 				<input type="submit" value="Status update">
 			</form>
 			</tr>
+			</td>
 			<% end %>
 		<% end %>
 	</table>
@@ -88,10 +88,10 @@
 		<input type="submit" value="Delete the list">
 	</form>
 		<br>
-	<form action="/task/destroy" method="post" >
+	<form action="/task/destroy" method="post" data-remote="true" class="destroy">
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 		<input type="hidden" name="list_id" value="<%= @list.id%>">
-		<input type="submit" value="Clear completed tasks">
+		<input type="submit" value="Clear completed tasks" id="clear_btn">
 	</form>
 
 <% end %>
