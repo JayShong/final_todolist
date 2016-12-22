@@ -9,8 +9,14 @@
 <% end %>
 
 <% if @list %>
-<%= @list.title %><br>
-		<%= link_to "Update the list", list_path(@list.id) %>
+<%= @list.title %><br><br><br><br>
+	<form action="/task/create" method="post" >
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+		<input type="hidden" name="list_id" value="<%= @list.id%>">
+		<label for="description">Add new task</label><br>
+		<input type="text" name="description"><br>
+		<input type="submit" value="Add task to list">
+	</form>
 	<form action="/list/destroy" method="post" >
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 	<input type="hidden" name="list_id" value="<%= @list.id%>">

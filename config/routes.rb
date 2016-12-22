@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'user/logged_in' => "user#logged_in"
   post 'list/create' => "list#create"
   post 'list/destroy' => "list#destroy"
+  post 'task/create' => "task#create"
 
   resources :user
   resources :list, only: [:index, :show, :update]
