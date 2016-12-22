@@ -13,8 +13,9 @@
       <%= value %>
     </div>
 <% end %>
-
-<%= link_to "Profile", profile_path %>&nbsp <%= link_to "To Do List", list_index_path %>
+<% if session[:user_id] %>
+<%= link_to "Profile", profile_path %>&nbsp <%= link_to "To Do List", list_index_path %>&nbsp <%= link_to "Logout", user_logout_path %>
+<% end %>
 <br>
 <br>
 <br>

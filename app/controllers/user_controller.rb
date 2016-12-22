@@ -64,7 +64,12 @@ class UserController < ApplicationController
 		flash[:success] = "Your account has been created."
 		session[:user_id] = @user.id
 		redirect_to list_index_path
-      end
+     end
+
+     def logout
+		reset_session
+		redirect_to user_index_path
+     end
 
 	private
   def user_params
